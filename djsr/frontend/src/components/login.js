@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axiosInstance from "../axiosApi";
 
 class Login extends Component {
     constructor(props) {
@@ -14,8 +15,19 @@ class Login extends Component {
     }
 
     handleSubmit(event) {
-        alert('A username and password was submitted: ' + this.state.username + " " + this.state.password);
         event.preventDefault();
+        try {
+            const data = axiosInstance.post('/token/obtain/', {
+                username: this.state.username,
+                password: this.state.password
+            });
+            axiosInstance.defaults.headers['Authorization'] = "JWT " + data.access;
+            localStorage.setItem('access_token', data.access);
+            localStorage.setItem('refresh_token', data.refresh);
+            return data;
+        } catch (error) {
+            throw error;
+        }
     }
 
     render() {
