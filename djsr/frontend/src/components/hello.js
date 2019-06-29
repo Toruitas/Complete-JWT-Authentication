@@ -11,9 +11,9 @@ class Hello extends Component {
         this.getMessage = this.getMessage.bind(this)
     }
 
-    getMessage(){
+    async getMessage(){
         try {
-            let response = axiosInstance.get('/hello/');
+            let response = await axiosInstance.get('/hello/');
             const message = response.data.hello;
             this.setState({
                 message: message,
@@ -29,10 +29,7 @@ class Hello extends Component {
         // It's not the most straightforward thing to run an async method in componentDidMount
 
         // Version 1 - no async: Console.log will output something undefined.
-        const messageData1 = this.getMessage();
-        console.log("messageData1: ", JSON.stringify(messageData1, null, 4));
-
-
+        this.getMessage();
     }
 
     render(){

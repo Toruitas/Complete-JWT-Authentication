@@ -8,23 +8,40 @@ class Login extends Component {
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleSubmitWThen = this.handleSubmitWThen.bind(this);
     }
 
     handleChange(event) {
         this.setState({[event.target.name]: event.target.value});
     }
 
-    handleSubmit(event) {
+    handleSubmitWThen(event){
+        event.preventDefault();
+        axiosInstance.post('/token/obtain/', {
+                username: this.state.username,
+                password: this.state.password
+            }).then(
+                result => {
+                    axiosInstance.defaults.headers['Authorization'] = "JWT " + result.data.access;
+                    localStorage.setItem('access_token', result.data.access);
+                    localStorage.setItem('refresh_token', result.data.refresh);
+                }
+        ).catch (error => {
+            throw error;
+        })
+    }
+
+    async handleSubmit(event) {
         event.preventDefault();
         try {
-            const data = axiosInstance.post('/token/obtain/', {
+            const response = await axiosInstance.post('/token/obtain/', {
                 username: this.state.username,
                 password: this.state.password
             });
-            axiosInstance.defaults.headers['Authorization'] = "JWT " + data.access;
-            localStorage.setItem('access_token', data.access);
-            localStorage.setItem('refresh_token', data.refresh);
-            return data;
+            axiosInstance.defaults.headers['Authorization'] = "JWT " + response.data.access;
+            localStorage.setItem('access_token', response.data.access);
+            localStorage.setItem('refresh_token', response.data.refresh);
+            return response;
         } catch (error) {
             throw error;
         }

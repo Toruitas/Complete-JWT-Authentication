@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
     mode: "development",
-    entry: path.resolve(__dirname, 'djsr/frontend/src/index.js'),
+    entry: ['babel-polyfill', path.resolve(__dirname, 'djsr/frontend/src/index.js')],
     output: {
         // options related to how webpack emits results
 
