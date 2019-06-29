@@ -20,8 +20,8 @@ class Hello extends Component {
             });
             return message;
         }catch(error){
-            console.log("Error: ", JSON.stringify(error, null, 4));
-            throw error;
+            console.log("Hello error: ", JSON.stringify(error, null, 4));
+            // throw error; todo
         }
     }
 
