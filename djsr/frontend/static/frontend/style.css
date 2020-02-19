@@ -1,0 +1,10 @@
+#root{
+    background-color:rebeccapurple;
+    color:white;
+}
+
+.nav-link{
+    color:white;
+    border: 1px solid white;
+    padding: 1em;
+}
