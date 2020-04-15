@@ -10,13 +10,19 @@ The full tutorial on Medium lives here:
 
 ## Tutorial content
 Part 1 - Django:
+
 1. [Django Custom User](https://github.com/Toruitas/Complete-JWT-Authentication/tree/1_1_custom_user)
+
 2. [DRF serializers and auth](https://github.com/Toruitas/Complete-JWT-Authentication/tree/1_2_DRF_serializers_auth)
 
 Part 2 - React:
+
 3. [Installing React inside our Django project as a standalone app](https://github.com/Toruitas/Complete-JWT-Authentication/tree/2_1_installing_react)
+
 4. [Preparing React for Authentication, with routing, and the signup & login forms](https://github.com/Toruitas/Complete-JWT-Authentication/tree/2_2_preparing_react)
+
 5. [Axios for requests and tokens](https://github.com/Toruitas/Complete-JWT-Authentication/tree/2_3_axios)
+
 6. [Logging out & blacklisting tokens](https://github.com/Toruitas/Complete-JWT-Authentication/tree/2_4_logging_out)
 
 Requirements: 
