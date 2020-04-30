@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 {% load static %}
+{% load render_bundle from webpack_loader %}
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,6 +12,7 @@
     <div id="root" class="content">
         This will be the base template.
     </div>
-<script type="text/javascript" src="{% static 'frontend/public/main.js' %}"></script>
+<!-- <script type="text/javascript" src="{% static 'frontend/public/main.js' %}"></script> -->
+{% render_bundle 'main' %}
 </body>
 </html>

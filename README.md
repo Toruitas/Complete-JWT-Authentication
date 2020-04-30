@@ -34,3 +34,10 @@ Requirements:
 * Django Rest Framework
 * Python 3
 * React 16.8 and up
+
+
+To-do:
+Hot reloading.
+See:
+* https://web.archive.org/web/20190105024822/https://owais.lone.pw/blog/webpack-plus-reactjs-and-django/
+Waiting for fix for: https://github.com/owais/django-webpack-loader/issues/227

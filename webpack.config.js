@@ -1,4 +1,5 @@
 const path = require('path');
+var BundleTracker = require('webpack-bundle-tracker')
 
 module.exports = {
     mode: "development",
@@ -8,7 +9,7 @@ module.exports = {
 
         // where compiled files go
         path: path.resolve(__dirname, "djsr/frontend/static/frontend/public/"),
-
+        filename: '[name]-[hash].js',
         // 127.0.0.1/static/frontend/public/ where files are served from
         publicPath: "/static/frontend/public/",
         filename: 'main.js',  // the same one we import in index.html
@@ -29,4 +30,10 @@ module.exports = {
             }
         ],
     },
+    plugins: [
+        new BundleTracker({
+          path: __dirname,
+          filename: "/djsr/webpack-stats.json",
+        }),
+    ],
 };
