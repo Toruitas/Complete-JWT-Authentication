@@ -27,7 +27,7 @@ Part 2 - React:
 
 Part 3 - Improvements to Axios Interceptor
 
-7. [Fixing Axios infinite loop]()
+7. [Fixing Axios infinite loop](https://github.com/Toruitas/Complete-JWT-Authentication/tree/3_bugfixes)
 
 Requirements: 
 * Django 2 or 3
