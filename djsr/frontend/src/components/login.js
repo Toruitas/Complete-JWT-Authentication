@@ -26,9 +26,9 @@ class Login extends Component {
                     localStorage.setItem('access_token', result.data.access);
                     localStorage.setItem('refresh_token', result.data.refresh);
                 }
-        ).catch (error => {
-            throw error;
-        })
+            ).catch (error => {
+                throw error;
+            })
     }
 
     async handleSubmit(event) {

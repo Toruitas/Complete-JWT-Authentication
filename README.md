@@ -5,7 +5,7 @@ This GitHub repo accompanies my tutorial on the subject of how to use JWT Authen
 
 If you want to use React as a frontend with Django Rest Framework as a backend, you'll notice that getting the Authentication system set up presents one of the largest early hurdles. Follow this tutorial to build a really ugly website demonstrating the process from start to finish, including Custom Users, refreshing tokens, and protected views. It's the tutorial I wish I had when I first started.
 
-The full tutorial on Medium lives here:
+The full tutorial on Hackernoon lives here: https://hackernoon.com/110percent-complete-jwt-authentication-with-django-and-react-2020-iejq34ta
 
 
 ## Tutorial content
@@ -24,6 +24,10 @@ Part 2 - React:
 5. [Axios for requests and tokens](https://github.com/Toruitas/Complete-JWT-Authentication/tree/2_3_axios)
 
 6. [Logging out & blacklisting tokens](https://github.com/Toruitas/Complete-JWT-Authentication/tree/2_4_logging_out)
+
+Part 3 - Improvements to Axios Interceptor
+
+7. [Fixing Axios infinite loop](https://github.com/Toruitas/Complete-JWT-Authentication/tree/3_bugfixes)
 
 Requirements: 
 * Django 2 or 3
