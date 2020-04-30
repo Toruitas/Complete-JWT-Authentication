@@ -37,7 +37,6 @@ axiosInstance.interceptors.response.use(
 
                     // exp date in token is expressed in seconds, while now() returns milliseconds:
                     const now = Math.ceil(Date.now() / 1000);
-                    console.log(tokenParts.exp);
 
                     if (tokenParts.exp > now) {
                         return axiosInstance

@@ -12,6 +12,7 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
 
         # Add custom claims
         token['fav_color'] = user.fav_color
+        token['username'] = user.username
         return token
 
 

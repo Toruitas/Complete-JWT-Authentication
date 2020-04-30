@@ -28,6 +28,12 @@ class Hello extends Component {
     componentDidMount(){
         // It's not the most straightforward thing to run an async method in componentDidMount
 
+        const refreshToken = localStorage.getItem('refresh_token');
+        const tokenParts = JSON.parse(atob(refreshToken.split('.')[1]));
+        this.setState({
+            username:tokenParts.username
+        })
+
         // Version 1 - no async: Console.log will output something undefined.
         this.getMessage();
     }
@@ -35,7 +41,7 @@ class Hello extends Component {
     render(){
         return (
             <div>
-                <p>{this.state.message}</p>
+                <p>{this.state.message}, {this.state.username}</p>
             </div>
         )
     }
