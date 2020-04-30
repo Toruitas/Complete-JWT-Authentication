@@ -17,28 +17,48 @@ axiosInstance.interceptors.response.use(
     error => {
       const originalRequest = error.config;
 
-      // test for token presence, no point in sending a request if token isn't present
-      if (localStorage.getItem('refresh_token') && error.response.status === 401 && error.response.statusText === "Unauthorized") {
-          const refresh_token = localStorage.getItem('refresh_token');
+      if (!originalRequest._retry){
+        originalRequest._retry = true;
+        // test for token presence, no point in sending a request if token isn't present
+        if (error.response.data.code === "token_not_valid" && error.response.status === 401 && error.response.statusText === "Unauthorized") {
+            const refresh_token = localStorage.getItem('refresh_token');
 
-          return axiosInstance
-              .post('/token/refresh/', {refresh: refresh_token})
-              .then((response) => {
+            if (refresh_token){
+                const tokenParts = JSON.parse(atob(refresh_token.split('.')[1]));
 
-                  localStorage.setItem('access_token', response.data.access);
-                  localStorage.setItem('refresh_token', response.data.refresh);
+                // exp date in token is expressed in seconds, while now() returns milliseconds:
+                const now = Math.ceil(Date.now() / 1000);
+                console.log(tokenParts.exp);
 
-                  axiosInstance.defaults.headers['Authorization'] = "JWT " + response.data.access;
-                  originalRequest.headers['Authorization'] = "JWT " + response.data.access;
+                if (tokenParts.exp > now) {
+                    return axiosInstance
+                    .post('/token/refresh/', {refresh: refresh_token})
+                    .then((response) => {
+        
+                        localStorage.setItem('access_token', response.data.access);
+                        localStorage.setItem('refresh_token', response.data.refresh);
+        
+                        axiosInstance.defaults.headers['Authorization'] = "JWT " + response.data.access;
+                        originalRequest.headers['Authorization'] = "JWT " + response.data.access;
 
-                  return axiosInstance(originalRequest);
-              })
-              .catch(err => {
-                  console.log(err)
-              });
+                        console.log("Tokens refreshed.")
+        
+                        return axiosInstance(originalRequest);
+                    })
+                    .catch(err => {
+                        console.log(err)
+                    });
+                }else{
+                    console.log("Refresh token is expired", tokenParts.exp, now);
+                }
+            }else{
+                console.log("Refresh token missing.")
+            }
+        }
       }
+     
       // specific error handling done elsewhere
-      return Promise.reject({...error});
+      return Promise.reject(error);
   }
 );
 
